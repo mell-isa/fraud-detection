@@ -17,10 +17,24 @@ with open('logistic_regression_model.pickle', 'rb') as file:
 with open('naive_bayes_model.pickle', 'rb') as file:
     naive_bayes_model = pickle.load(file)
 
+# Apply custom CSS
+def apply_custom_css():
+    with open('styles.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 # Define the pages
 def home_page():
     st.title("🏠 Online Fraud Detection")
-    st.write("Welcome to the Online Fraud Payment Detection app. Use the sidebar to navigate through the different sections of the app.")
+    st.image("contoh.jpg", use_column_width=True)
+    st.write("""
+    Welcome to the Online Fraud Payment Detection app. This application helps you predict whether a financial transaction is fraudulent or not.
+    """)
+    st.write("**Use the sidebar to navigate through the different sections of the app.**")
+    
+    if st.button("Get Started"):
+        prediction_page()
+        # st.session_state.page = "Prediction"
+
 
 def prediction_page():
     st.title("🔍 Online Fraud Payment Detection")
@@ -28,8 +42,10 @@ def prediction_page():
 
     model_choice = st.selectbox("Choose the model for prediction", ["Decision Tree", "Logistic Regression", "Naive Bayes"])
 
+    st.header("Select Transaction Type")
+    type = st.selectbox("Transaction Type", ["Cash Out", "Payment", "Cash In", "Transfer", "Debit"], key='type')
+    
     st.header("Input Transaction Details")
-    type = st.select_slider("Transaction Type", ["Cash Out", "Payment", "Cash In", "Transfer", "Debit"], key='type')
     amounts = st.number_input("Transaction Amount", min_value=0, max_value=10000000, value=0, step=1, key='amount')
     oldb_orig = st.number_input("Your Balance Before Transaction", min_value=0, max_value=10000000, value=0, step=1, key='old_balance_orig')
     oldb_dest = st.number_input("Recipient's Balance Before Transaction", min_value=0, max_value=10000000, value=0, step=1, key='old_balance_dest')
@@ -106,46 +122,29 @@ def eda_page():
     st.pyplot(fig)
 
 def about_page():
-    st.title("ℹ️ About")
+    st.title("About - Online Fraud Detection from kelompok 2")
     st.write("""
     This application helps to predict whether a financial transaction is fraudulent or not. It uses three different machine learning models:
     - **Decision Tree**: Known for its interpretability and ability to handle non-linear relationships.
     - **Logistic Regression**: A simple and effective baseline model providing probability estimates.
     - **Naive Bayes**: Computationally efficient and handles high-dimensional data well.
-    
-    Developed with ❤️ by Kelompok 2.
+    - **Our Team**: 
+    > Jimmie Henderson Gunawan (2602164685)
+    >
+    > Mellisa angeline (2602077862)
+    >
+    > tiara intan kusuma (2602172220)
+    >
+    > angel eodia (2602192140)
+    >
+    > benny strata wijaya (2540128682)
+
     """)
 
-# Sidebar navigation with boxes
+# Sidebar navigation with cards
 st.sidebar.title("Navigation")
-st.sidebar.markdown(
-    """
-    <style>
-    .nav-box {
-        padding: 10px;
-        margin: 5px 0;
-        background-color: #f0f0f0;
-        border: 1px solid #e0e0e0;
-        border-radius: 5px;
-        text-align: center;
-        cursor: pointer;
-    }
-    .nav-box:hover {
-        background-color: #e0e0e0;
-    }
-    </style>
-    """, unsafe_allow_html=True
-)
-
-page = st.sidebar.selectbox("Go to", ["Home", "Prediction","EDA", "About"], format_func=lambda x: x)
-
-# page = 'Home'
-# if nav_box('Home'):
-#     page = 'Home'
-# elif nav_box('Prediction'):
-#     page = 'Prediction'
-# elif nav_box('About'):
-#     page = 'About'
+apply_custom_css()
+page = st.sidebar.radio("Go to", ["Home", "Prediction", "EDA", "About"], format_func=lambda x: x)
 
 # Display the selected page
 if page == "Home":
@@ -157,20 +156,10 @@ elif page == "EDA":
 elif page == "About":
     about_page()
 
-# Add a footer
+# Add a watermark
 st.markdown("""
-<style>
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 10px;
-}
-</style>
-<div class="footer">
-    <p>Developed with ❤️ by Kelompok 2</p>
+<div class="watermark">
+    Developed with ❤️ by Kelompok 2
 </div>
 """, unsafe_allow_html=True)
+
