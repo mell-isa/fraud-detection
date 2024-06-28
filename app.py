@@ -126,16 +126,16 @@ def about_page():
     - **Logistic Regression**: A simple and effective baseline model providing probability estimates.
     - **Naive Bayes**: Computationally efficient and handles high-dimensional data well.
     - **Our Team**: 
+    > Angel Eodia (2602192140)
+    > 
+    > Benny Strata Wijaya (2540128682)
+    > 
     > Jimmie Henderson Gunawan (2602164685)
+    > 
+    > Mellisa Angelin (2602077862)
+    > 
+    > Tiara Intan Kusuma (2602172220)
     >
-    > Mellisa angeline (2602077862)
-    >
-    > tiara intan kusuma (2602172220)
-    >
-    > angel eodia (2602192140)
-    >
-    > benny strata wijaya (2540128682)
-
     """)
 
 # Sidebar navigation with cards
