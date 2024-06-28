@@ -100,27 +100,27 @@ def eda_page():
     st.write("### Dataset Overview")
     st.write(data.head())
 
-    st.write("### Basic Statistics")
-    st.write(data.describe())
+    # st.write("### Basic Statistics")
+    # st.write(data.describe())
 
-    st.write("### Distribution of Transaction Types")
-    fig, ax = plt.subplots()
-    sns.countplot(data['type'], ax=ax)
-    st.pyplot(fig)
+    # st.write("### Distribution of Transaction Types")
+    # fig, ax = plt.subplots()
+    # sns.countplot(data['type'], ax=ax)
+    # st.pyplot(fig)
 
-    non_numeric_columns = ['nameOrig', 'nameDest']
-    data_numeric = data.drop(columns=non_numeric_columns)
-    data_encoded = pd.get_dummies(data_numeric, columns=['type'])
+    # non_numeric_columns = ['nameOrig', 'nameDest']
+    # data_numeric = data.drop(columns=non_numeric_columns)
+    # data_encoded = pd.get_dummies(data_numeric, columns=['type'])
 
-    st.write("### Correlation Matrix")
-    fig, ax = plt.subplots()
-    sns.heatmap(data_encoded.corr(), annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
-    st.pyplot(fig)
+    # st.write("### Correlation Matrix")
+    # fig, ax = plt.subplots()
+    # sns.heatmap(data_encoded.corr(), annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
+    # st.pyplot(fig)
 
-    st.write("### Distribution of Transaction Amounts")
-    fig, ax = plt.subplots()
-    sns.histplot(data['amount'], bins=50, kde=True, ax=ax)
-    st.pyplot(fig)
+    # st.write("### Distribution of Transaction Amounts")
+    # fig, ax = plt.subplots()
+    # sns.histplot(data['amount'], bins=50, kde=True, ax=ax)
+    # st.pyplot(fig)
 
 def about_page():
     st.title("About - Online Fraud Detection from kelompok 2")
