@@ -91,7 +91,7 @@ def eda_page():
     st.title("📊 Exploratory Data Analysis")
     st.subheader('Exploring the transaction dataset')
     
-    data = pd.read_csv('Sample-Dataset.csv)
+    data = pd.read_csv('Sample-Dataset.csv')
 
     st.write("### Dataset Overview")
     st.write(data.head())
